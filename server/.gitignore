@@ -5,6 +5,13 @@
 /.pnp
 .pnp.js
 
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+
 # testing
 /coverage
 

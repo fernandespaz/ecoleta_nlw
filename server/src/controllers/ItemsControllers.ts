@@ -7,7 +7,7 @@ class ItemsController {
 
         const serializedItems = items.map(item => {
             return {
-                item: item.id,
+                id: item.id,
                 title: item.title,
                 image_url: `http://localhost:3333/uploads/${item.image}`
             };

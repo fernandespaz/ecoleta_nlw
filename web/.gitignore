@@ -11,6 +11,12 @@
 # production
 /build
 
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
 # misc
 .DS_Store
 .env.local
