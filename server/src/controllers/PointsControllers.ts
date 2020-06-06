@@ -53,7 +53,7 @@ class PointsController {
         const trx = await Knex.transaction(); 
 
         const insertedIds = await trx('points').insert({
-            image: 'image-fake',
+            image: 'https://lh3.googleusercontent.com/proxy/ofNHybOmdRtpB920lKQ-jq1CN9RMrOU68mc3wxPoi9LwxsudYQeX3R7Mm5vZkTlFeS6Zb-bOxSTKRl205DhwehvGTubxcBSTwrfLqVcCoRU9hSHXvQI90dnxDH7s480-p0Z2vL_jZG7RxtU',
             name,
             email,
             whatsapp,
