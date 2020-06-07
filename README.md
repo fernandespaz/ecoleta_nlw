@@ -1,12 +1,17 @@
-Aplicação desenvolvida para treinamendo de STACK.
+Ecoleta
+Aplicação desenvolvida em uma semana de trainamento com a RocketSeat.
+Essa aplicação tem Back-end em Node.Js, Bando de Dados Sqlite, e a lib do 
+React.JS e React-Native.
 
-VERSION: 1.0.1
+Uma aplicação que agregou muito conhecimento e principalmente a introdução em TypeScript.
 
+Installation
+Use the package manager npm or yanr to install Ecoleta.
+Rum Migration
 
-Executando aplicação;
+![Screenshot](inicio.png)
+![Screenshot](ponto.png)
+![Screenshot](selected.png)
+![Screenshot](description.png)
 
-Run:
-
-npm install or yarn install 
-
-folder server run yanr dev for to up back-end.
+contato: diegofernandes14@hotmail.com
