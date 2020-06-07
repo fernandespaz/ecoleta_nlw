@@ -11,8 +11,7 @@ import {
 } from "react-native";
 
 import { Feather as Icon } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
-import Constants from "expo-constants";
+import { useNavigation, useRoute} from "@react-navigation/native";
 import MapView, { Marker } from "react-native-maps";
 import { SvgUri } from "react-native-svg";
 import * as Location from "expo-location";
@@ -30,21 +29,30 @@ interface Point{
   image:string;
   latitude:number;
   longitude:number;
- 
+}
+
+interface Params{
+  uf:string;
+  city:string;
 }
 
 const Points = () => {
+  const navigation = useNavigation();
+  const route = useRoute();
+
+  const routeParams = route.params as Params;
+
   const [items, setItems] = useState<Item[]>([]);
   const [points, setPoints] = useState<Point[]>([]);
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   const [intialPosition, setInitialPosition] = useState<[number,number]>([0,0]);
-  const navigation = useNavigation();
 
-
+ //Items
   useEffect(() => {
     api.get("items").then((response) => {
       setItems(response.data);
+      
     });
   }, []);
 
@@ -69,28 +77,31 @@ const Points = () => {
     loadPosition();
   }, []);
 
+  // Points
   useEffect(() =>{
-    api.get('points', {
+    api.get("points", {
       params:{
-        city:'',
-        uf:'',
-        items:''
+        city:routeParams.city,
+        uf:routeParams.uf,
+        items:selectedItems
       }
     }).then(response =>{
-      setPoints(response.data);  
+      setPoints(response.data);
+      //console.log(response.data);
     })
-  },[]);
+  },[selectedItems]);
 
   function handleNavigateBack() {
     navigation.goBack();
   }
 
-  function handleNatigateToDetail() {
-    navigation.navigate("Detail");
+  function handleNatigateToDetail(id: number) {
+    navigation.navigate("Detail",{point_id: id});
   }
 
   function handleSelectItem(id: number) {
     const alreadySelected = selectedItems.findIndex((item) => item === id);
+
     if (alreadySelected >= 0) {
       const filteredItems = selectedItems.filter((item) => item !== id);
 
@@ -118,31 +129,32 @@ const Points = () => {
             style={styles.map}
             loadingEnabled ={intialPosition[0] === 0}
             initialRegion={{
-              latitude: intialPosition[0],
-              longitude: intialPosition[1],
+              //No emulador não esta funcionando a parte comentada
+              latitude: -15.8470057,//intialPosition[0],
+              longitude: -48.1193381,//intialPosition[1],
               latitudeDelta: 0.014,
               longitudeDelta: 0.014,
             }}
           >
-            <Marker
-              onPress={handleNatigateToDetail}
+            {points.map(point => (
+              <Marker
+              key={String(point.id)}
+              onPress={() => handleNatigateToDetail(point.id)}
               style={styles.mapMarker}
               coordinate={{
-                latitude: -15.8386117518297,
-                longitude: -48.120104446356,
+                latitude: point.latitude,
+                longitude: point.longitude,
               }}
             >
               <View style={styles.mapMarkerContainer}>
                 <Image
                   style={styles.mapMarkerImage}
-                  source={{
-                    uri:
-                      "https://lh3.googleusercontent.com/proxy/ofNHybOmdRtpB920lKQ-jq1CN9RMrOU68mc3wxPoi9LwxsudYQeX3R7Mm5vZkTlFeS6Zb-bOxSTKRl205DhwehvGTubxcBSTwrfLqVcCoRU9hSHXvQI90dnxDH7s480-p0Z2vL_jZG7RxtU",
-                  }}
+                  source={{uri: point.image }}
                 ></Image>
-                <Text style={styles.mapMarkerTitle}>Mercado </Text>
+                <Text style={styles.mapMarkerTitle}>{point.name} </Text>
               </View>
             </Marker>
+            ))}
           </MapView>
           )}
         </View>
@@ -243,6 +255,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginTop: 16,
     marginBottom: 32,
+    paddingVertical: 20,
+    paddingHorizontal: 32,
   },
 
   item: {
