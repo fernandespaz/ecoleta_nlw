@@ -27,6 +27,7 @@ interface Point{
   id:number;
   name:string;
   image:string;
+  image_url:string;
   latitude:number;
   longitude:number;
 }
@@ -129,9 +130,8 @@ const Points = () => {
             style={styles.map}
             loadingEnabled ={intialPosition[0] === 0}
             initialRegion={{
-              //No emulador não esta funcionando a parte comentada
-              latitude: -15.8470057,//intialPosition[0],
-              longitude: -48.1193381,//intialPosition[1],
+              latitude: intialPosition[0],
+              longitude: intialPosition[1],
               latitudeDelta: 0.014,
               longitudeDelta: 0.014,
             }}
@@ -149,7 +149,7 @@ const Points = () => {
               <View style={styles.mapMarkerContainer}>
                 <Image
                   style={styles.mapMarkerImage}
-                  source={{uri: point.image }}
+                  source={{uri: point.image_url }}
                 ></Image>
                 <Text style={styles.mapMarkerTitle}>{point.name} </Text>
               </View>
@@ -176,7 +176,7 @@ const Points = () => {
               onPress={() => handleSelectItem(item.id)}
               activeOpacity={0.7}
             >
-              {/* Trocar endereço uri quando mudar o back-end */}
+              
               <SvgUri width={42} height={42} uri={item.image_url} />
               <Text style={styles.title}>{item.title}</Text>
             </TouchableOpacity>
