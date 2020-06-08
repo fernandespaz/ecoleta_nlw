@@ -1,17 +1,24 @@
-Ecoleta
-Aplicação desenvolvida em uma semana de trainamento com a RocketSeat.
-Essa aplicação tem Back-end em Node.Js, Bando de Dados Sqlite, e a lib do 
-React.JS e React-Native.
-
-Uma aplicação que agregou muito conhecimento e principalmente a introdução em TypeScript.
-
-Installation
-Use the package manager npm or yanr to install Ecoleta.
-Rum Migration
-
 ![Screenshot](inicio.png)
 ![Screenshot](ponto.png)
-![Screenshot](selected.png)
-![Screenshot](description.png)
 
-contato: diegofernandes14@hotmail.com
+Next Level Week #1
+Projeto Ecoleta construído durante a Next Level Week #01
+
+Introdução
+Durante a semana de 1 a 5 de junho de 2020 estive presente na Next Level Week e deixo aqui o meu trabalho desenvolvido durante essa semana.
+
+O que aprendi com a NLW?
+Com a Next Level Week pude aprender os passos básicos de back-end com Node.js, front-end com React.js e de mobile com React-Native.
+
+Que tecnologias usei
+Utilizei seguintes tecnologias: JavaScript, Node.js, React, HTML e CSS.
+
+Para a versão Mobile do projeto utilizei o Expo para visualizar a minha app no meu smartphone.
+
+Aprendi também alguns módulos tanto de Node.js como de React.
+
+Conclusão
+Foi uma semana de muito aprencizado agregando muito conhecimento e diversão
+no desenvolvimento da aplicação.
+
+No final de tudo consegui desenvolver o meu primeiro projeto em React.js e React-Native.
